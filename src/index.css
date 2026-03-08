@@ -52,6 +52,11 @@
     --sidebar-hover-bg: 220 14% 96%;
     --sidebar-border: 220 13% 93%;
 
+    --auth-dark: 218 50% 8%;
+    --auth-dark-card: 218 40% 12%;
+    --auth-hero-text: 0 0% 100%;
+    --auth-hero-muted: 215 20% 65%;
+
     --stat-blue: 217 91% 60%;
     --stat-amber: 38 92% 50%;
     --stat-green: 142 71% 45%;
