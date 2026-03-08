@@ -269,23 +269,28 @@ const ArticlePage = () => {
           <div className="max-w-3xl mx-auto py-6 px-6">
             {/* Toolbar */}
             <div className="flex items-center gap-1 mb-4 p-2 rounded-lg border border-border bg-card">
-              {toolbarButtons.map((btn, i) =>
-                btn === "sep" ? (
-                  <Separator
-                    key={`sep-${i}`}
-                    orientation="vertical"
-                    className="h-5 mx-1"
-                  />
-                ) : (
+              {toolbarButtons.map((btn, i) => {
+                if (btn === "sep") {
+                  return (
+                    <Separator
+                      key={`sep-${i}`}
+                      orientation="vertical"
+                      className="h-5 mx-1"
+                    />
+                  );
+                }
+                const Icon = (btn as { icon: any; label: string }).icon;
+                const label = (btn as { icon: any; label: string }).label;
+                return (
                   <button
-                    key={(btn as any).label}
+                    key={label}
                     className="p-2 rounded-md hover:bg-accent text-muted-foreground hover:text-foreground transition-colors"
-                    title={(btn as any).label}
+                    title={label}
                   >
-                    <(btn as any).icon className="w-4 h-4" />
+                    <Icon className="w-4 h-4" />
                   </button>
-                )
-              )}
+                );
+              })}
             </div>
 
             {/* Editable Content Area */}
