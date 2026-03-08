@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, TrendingUp, Zap, Lightbulb, Lock, Grid3X3, Snowflake, ExternalLink, BarChart2, Users, Clock } from "lucide-react";
+import { Search, TrendingUp, Zap, Lightbulb, Lock, Grid3X3, Snowflake } from "lucide-react";
 import AppLayout from "@/components/AppLayout";
 import { Button } from "@/components/ui/button";
 
