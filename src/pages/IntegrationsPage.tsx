@@ -128,7 +128,7 @@ const IntegrationsPage = () => {
                 className="w-full mt-2 h-32 px-4 py-3 text-sm border border-border rounded-lg bg-background resize-none placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow"
                 placeholder="e.g. Always use a professional yet witty tone. Avoid jargon. Focus on technical accuracy but keep it accessible for beginners..."
               />
-              <div className="grid grid-cols-3 gap-4 mt-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
                 <div>
                   <label className="text-xs font-semibold text-muted-foreground tracking-wide">TONE</label>
                   <select value={tone} onChange={(e) => setTone(e.target.value)} className="w-full mt-1 h-10 px-3 text-sm border border-border rounded-lg bg-background text-foreground">
