@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, TrendingUp, Zap, Lightbulb, Lock, Grid3X3, Snowflake, ExternalLink, BarChart2, Users, Clock } from "lucide-react";
+import { Search, TrendingUp, Zap, Lightbulb, Lock, Grid3X3, Snowflake } from "lucide-react";
 import AppLayout from "@/components/AppLayout";
 import { Button } from "@/components/ui/button";
 
@@ -115,37 +115,11 @@ const TrendsPage = () => {
               </div>
             </div>
 
-            {/* Hover Detail Overlay */}
-            <div className={`absolute inset-0 bg-card border border-primary/30 rounded-xl p-5 flex flex-col shadow-xl z-10 transition-all duration-300 ${
-              hoveredTopic === topic.title ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"
+            {/* Hover Domain Tooltip */}
+            <div className={`absolute top-3 right-12 bg-foreground text-background text-xs font-medium px-3 py-1.5 rounded-lg shadow-lg z-10 transition-all duration-200 ${
+              hoveredTopic === topic.title ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1 pointer-events-none"
             }`}>
-              <div className="flex items-center justify-between mb-2">
-                <span className={`badge-status ${topic.badgeColor} font-semibold`}>{topic.badge}</span>
-                <span className="text-xs text-muted-foreground flex items-center gap-1">
-                  <Clock className="w-3 h-3" /> {topic.freshness}
-                </span>
-              </div>
-              <h3 className="text-lg font-bold text-primary mb-2">{topic.title}</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed mb-3 flex-1">{topic.desc}</p>
-              <div className="grid grid-cols-3 gap-2 mb-3">
-                <div className="text-center p-2 bg-secondary/50 rounded-lg">
-                  <BarChart2 className="w-3.5 h-3.5 mx-auto text-success mb-1" />
-                  <p className="text-xs font-bold text-success">{topic.growth}</p>
-                  <p className="text-[10px] text-muted-foreground">Growth</p>
-                </div>
-                <div className="text-center p-2 bg-secondary/50 rounded-lg">
-                  <Users className="w-3.5 h-3.5 mx-auto text-primary mb-1" />
-                  <p className="text-[10px] font-semibold text-foreground">{topic.audience}</p>
-                </div>
-                <div className="text-center p-2 bg-secondary/50 rounded-lg">
-                  <ExternalLink className="w-3.5 h-3.5 mx-auto text-warning mb-1" />
-                  <p className="text-xs font-bold text-foreground">{topic.volume}</p>
-                  <p className="text-[10px] text-muted-foreground">Volume</p>
-                </div>
-              </div>
-              <Button className="w-full gap-2" size="sm">
-                <Search className="w-4 h-4" /> Start Research
-              </Button>
+              {topic.audience}
             </div>
 
             <Button className="w-full mt-4 gap-2 group-hover:shadow-sm transition-shadow">
