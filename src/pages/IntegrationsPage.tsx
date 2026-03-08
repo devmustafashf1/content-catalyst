@@ -65,7 +65,7 @@ const IntegrationsPage = () => {
               <h2 className="text-lg font-bold text-foreground">Connected Platforms</h2>
               <button className="text-sm font-medium text-primary hover:underline transition-colors">Add New Platform</button>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {platforms.map((p) => (
                 <div key={p.name} className="bg-card border border-border rounded-xl p-5 flex items-center justify-between hover:border-primary/30 hover:shadow-md transition-all duration-200">
                   <div className="flex items-center gap-3">
