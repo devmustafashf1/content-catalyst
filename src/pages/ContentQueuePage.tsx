@@ -109,7 +109,7 @@ const ContentQueuePage = () => {
               <tr><td colSpan={6} className="px-5 py-12 text-center text-muted-foreground">No posts in this category yet.</td></tr>
             ) : (
               posts.map((post) => (
-                <tr key={post.title} className="border-b border-border last:border-0 hover:bg-secondary/50 transition-colors duration-150 cursor-pointer">
+                <tr key={post.title} onClick={() => navigate("/article")} className="border-b border-border last:border-0 hover:bg-secondary/50 transition-colors duration-150 cursor-pointer">
                   <td className="px-5 py-4">
                     <p className="text-sm font-semibold text-foreground">{post.title}</p>
                     <p className="text-xs text-muted-foreground mt-0.5">{post.subtitle}</p>
