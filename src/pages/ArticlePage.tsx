@@ -126,8 +126,8 @@ const ArticlePage = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* Top Bar */}
-      <header className="h-14 border-b border-border bg-card flex items-center justify-between px-4 shrink-0">
-        <div className="flex items-center gap-3">
+      <header className="h-auto md:h-14 border-b border-border bg-card flex flex-wrap items-center justify-between px-3 md:px-4 py-2 md:py-0 gap-2 shrink-0">
+        <div className="flex items-center gap-2 md:gap-3">
           <button
             onClick={() => navigate("/content")}
             className="p-1.5 rounded-md hover:bg-accent transition-colors"
@@ -138,29 +138,29 @@ const ArticlePage = () => {
             <h1 className="text-sm font-semibold text-foreground leading-tight">
               Article Workbench
             </h1>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-muted-foreground hidden sm:block">
               My Articles &gt; AI Blog Draft: Future of Tech
             </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 order-3 md:order-2">
           <Tabs value={activeTab} onValueChange={setActiveTab}>
             <TabsList className="h-8">
-              <TabsTrigger value="editor" className="text-xs px-3 h-7">
+              <TabsTrigger value="editor" className="text-xs px-2 md:px-3 h-7">
                 Editor
               </TabsTrigger>
-              <TabsTrigger value="history" className="text-xs px-3 h-7">
+              <TabsTrigger value="history" className="text-xs px-2 md:px-3 h-7">
                 History
               </TabsTrigger>
-              <TabsTrigger value="settings" className="text-xs px-3 h-7">
+              <TabsTrigger value="settings" className="text-xs px-2 md:px-3 h-7">
                 Settings
               </TabsTrigger>
             </TabsList>
           </Tabs>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 order-2 md:order-3">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="sm" className="text-xs gap-1.5">
@@ -181,7 +181,7 @@ const ArticlePage = () => {
             </DropdownMenuContent>
           </DropdownMenu>
           <Button size="sm" className="text-xs gap-1.5" onClick={handlePublish}>
-            Approve & Publish
+            <span className="hidden sm:inline">Approve &</span> Publish
             <Send className="w-3.5 h-3.5" />
           </Button>
         </div>
