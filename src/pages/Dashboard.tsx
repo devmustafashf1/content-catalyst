@@ -38,7 +38,7 @@ const Dashboard = () => {
   return (
     <AppLayout>
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-5 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 mb-8">
         {stats.map((stat) => (
           <div key={stat.label} className="stat-card hover:shadow-md hover:border-primary/20 transition-all duration-200">
             <div className={`w-12 h-12 rounded-xl ${stat.iconBg} flex items-center justify-center shrink-0`}>
