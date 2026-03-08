@@ -11,7 +11,7 @@ const SettingsPage = () => {
         {/* Profile */}
         <div className="bg-card border border-border rounded-xl p-6">
           <h2 className="text-lg font-bold text-foreground mb-4">Profile</h2>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="text-xs font-semibold text-muted-foreground">Full Name</label>
               <input className="w-full mt-1 h-10 px-3 text-sm border border-border rounded-lg bg-background" defaultValue="John Doe" />

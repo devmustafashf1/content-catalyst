@@ -7,7 +7,7 @@ const AnalyticsPage = () => {
       <h1 className="text-3xl font-bold text-foreground mb-2">Analytics</h1>
       <p className="text-muted-foreground mb-8">Track post performance, traffic, and engagement metrics.</p>
 
-      <div className="grid grid-cols-4 gap-5 mb-8">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mb-8">
         {[
           { label: "Total Views", value: "124.5K", change: "+18%" },
           { label: "Avg Engagement", value: "4.2%", change: "+0.8%" },

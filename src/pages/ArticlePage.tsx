@@ -266,7 +266,7 @@ const ArticlePage = () => {
 
         {/* Center - Editor */}
         <main className="flex-1 overflow-y-auto">
-          <div className="max-w-3xl mx-auto py-6 px-6">
+          <div className="max-w-3xl mx-auto py-4 md:py-6 px-3 md:px-6">
             {/* Toolbar */}
             <div className="flex items-center gap-1 mb-4 p-2 rounded-lg border border-border bg-card">
               {toolbarButtons.map((btn, i) => {

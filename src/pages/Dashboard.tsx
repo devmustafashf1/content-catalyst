@@ -97,7 +97,7 @@ const Dashboard = () => {
               <button className="px-3 py-1.5 text-xs font-medium text-foreground bg-secondary rounded-lg hover:bg-primary/10 transition-colors">Sort</button>
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {/* Researching */}
             <div>
               <div className="flex items-center gap-2 mb-3">

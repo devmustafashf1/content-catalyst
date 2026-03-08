@@ -91,7 +91,7 @@ const IntegrationsPage = () => {
             <h2 className="text-lg font-bold text-foreground mb-4">API Management</h2>
             <div className="space-y-3">
               {apiStates.map((api, i) => (
-                <div key={api.name} className="bg-card border border-border rounded-xl p-4 flex items-center justify-between hover:border-primary/30 hover:shadow-md transition-all duration-200">
+                <div key={api.name} className="bg-card border border-border rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-primary/30 hover:shadow-md transition-all duration-200">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center">
                       <Key className="w-5 h-5 text-muted-foreground" />

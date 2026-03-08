@@ -91,8 +91,36 @@ const ContentQueuePage = () => {
         </div>
       </div>
 
-      {/* Table */}
-      <div className="bg-card border border-border rounded-xl overflow-hidden">
+      {/* Content - Cards on mobile, Table on desktop */}
+      {/* Mobile Cards */}
+      <div className="space-y-3 md:hidden">
+        {posts.length === 0 ? (
+          <div className="bg-card border border-border rounded-xl p-8 text-center text-muted-foreground">No posts in this category yet.</div>
+        ) : (
+          posts.map((post) => (
+            <div key={post.title} onClick={() => navigate("/article")} className="bg-card border border-border rounded-xl p-4 hover:border-primary/30 hover:shadow-md transition-all duration-200 cursor-pointer">
+              <div className="flex items-center justify-between mb-2">
+                <span className={`badge-status ${post.statusColor}`}>{post.status}</span>
+                <button className="p-1 rounded hover:bg-secondary transition-colors"><MoreVertical className="w-4 h-4 text-muted-foreground" /></button>
+              </div>
+              <p className="text-sm font-semibold text-foreground">{post.title}</p>
+              <p className="text-xs text-muted-foreground mt-0.5 mb-3">{post.subtitle}</p>
+              <div className="flex items-center justify-between">
+                <span className={`badge-status ${post.topicColor}`}>{post.topic}</span>
+                <div className="flex items-center gap-2">
+                  <div className="w-10 h-1.5 bg-secondary rounded-full overflow-hidden">
+                    <div className={`h-full rounded-full ${post.origColor}`} style={{ width: `${post.originality}%` }} />
+                  </div>
+                  <span className={`text-xs font-semibold ${post.originality >= 90 ? "text-success" : post.originality >= 75 ? "text-warning" : "text-destructive"}`}>{post.originality}%</span>
+                </div>
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+
+      {/* Desktop Table */}
+      <div className="bg-card border border-border rounded-xl overflow-hidden hidden md:block">
         <table className="w-full">
           <thead>
             <tr className="border-b border-border">
