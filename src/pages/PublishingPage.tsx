@@ -41,12 +41,12 @@ const PublishingPage = () => {
 
   return (
     <AppLayout>
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Calendar */}
-        <div className="col-span-2">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-4">
-              <h1 className="text-2xl font-bold text-foreground">October 2023</h1>
+        <div className="lg:col-span-2">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-3">
+            <div className="flex items-center gap-3 md:gap-4">
+              <h1 className="text-xl md:text-2xl font-bold text-foreground">October 2023</h1>
               <div className="flex gap-1">
                 <button className="w-8 h-8 rounded border border-border flex items-center justify-center hover:bg-secondary hover:border-primary/20 transition-all duration-200">
                   <ChevronLeft className="w-4 h-4" />

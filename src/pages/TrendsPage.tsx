@@ -47,19 +47,19 @@ const TrendsPage = () => {
 
   return (
     <AppLayout>
-      <div className="flex items-start justify-between mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-6 gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Discover Trends</h1>
-          <p className="text-muted-foreground mt-1">Real-time market insights synthesized from Google, X, and Reddit.</p>
+          <h1 className="text-2xl md:text-3xl font-bold text-foreground">Discover Trends</h1>
+          <p className="text-muted-foreground mt-1 text-sm">Real-time market insights synthesized from Google, X, and Reddit.</p>
         </div>
-        <div className="flex gap-3">
-          <select className="h-10 px-3 text-sm border border-border rounded-lg bg-card text-foreground hover:border-primary/40 transition-colors cursor-pointer">
+        <div className="flex gap-2 flex-wrap">
+          <select className="h-9 md:h-10 px-3 text-sm border border-border rounded-lg bg-card text-foreground hover:border-primary/40 transition-colors cursor-pointer">
             <option>Region: Global</option>
           </select>
-          <select className="h-10 px-3 text-sm border border-border rounded-lg bg-card text-foreground hover:border-primary/40 transition-colors cursor-pointer">
+          <select className="h-9 md:h-10 px-3 text-sm border border-border rounded-lg bg-card text-foreground hover:border-primary/40 transition-colors cursor-pointer">
             <option>Category: Tech</option>
           </select>
-          <select className="h-10 px-3 text-sm border border-border rounded-lg bg-card text-foreground hover:border-primary/40 transition-colors cursor-pointer">
+          <select className="h-9 md:h-10 px-3 text-sm border border-border rounded-lg bg-card text-foreground hover:border-primary/40 transition-colors cursor-pointer">
             <option>Last 24h</option>
           </select>
         </div>
@@ -86,7 +86,7 @@ const TrendsPage = () => {
       </div>
 
       <h2 className="text-xl font-bold text-foreground mb-4">Suggested Topics</h2>
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
         {topics.map((topic) => (
           <div
             key={topic.title}

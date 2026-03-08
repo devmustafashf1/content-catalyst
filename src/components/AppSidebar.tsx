@@ -9,6 +9,7 @@ import {
   Settings,
   Sparkles,
   LogOut,
+  X,
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -22,7 +23,11 @@ const navItems = [
   { to: "/settings", icon: Settings, label: "Settings" },
 ];
 
-const AppSidebar = () => {
+interface AppSidebarProps {
+  onClose?: () => void;
+}
+
+const AppSidebar = ({ onClose }: AppSidebarProps) => {
   const location = useLocation();
   const navigate = useNavigate();
   const { logout } = useAuth();
@@ -32,17 +37,28 @@ const AppSidebar = () => {
     navigate("/login");
   };
 
+  const handleNavClick = () => {
+    onClose?.();
+  };
+
   return (
     <aside className="fixed left-0 top-0 bottom-0 w-60 bg-card border-r border-border flex flex-col z-30">
       {/* Brand */}
-      <div className="flex items-center gap-2.5 px-5 py-5 border-b border-border">
-        <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
-          <Sparkles className="w-5 h-5 text-primary-foreground" />
+      <div className="flex items-center justify-between px-5 py-5 border-b border-border">
+        <div className="flex items-center gap-2.5">
+          <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
+            <Sparkles className="w-5 h-5 text-primary-foreground" />
+          </div>
+          <div>
+            <h1 className="text-sm font-bold text-foreground leading-tight">AI Content Pro</h1>
+            <p className="text-xs text-muted-foreground">Blogging Agent</p>
+          </div>
         </div>
-        <div>
-          <h1 className="text-sm font-bold text-foreground leading-tight">AI Content Pro</h1>
-          <p className="text-xs text-muted-foreground">Blogging Agent</p>
-        </div>
+        {onClose && (
+          <button onClick={onClose} className="p-1.5 rounded-lg hover:bg-secondary transition-colors md:hidden">
+            <X className="w-5 h-5 text-muted-foreground" />
+          </button>
+        )}
       </div>
 
       {/* Navigation */}
@@ -53,6 +69,7 @@ const AppSidebar = () => {
             <NavLink
               key={item.to}
               to={item.to}
+              onClick={handleNavClick}
               className={`sidebar-link ${isActive ? "sidebar-link-active" : ""}`}
             >
               <item.icon className="w-5 h-5 shrink-0" />

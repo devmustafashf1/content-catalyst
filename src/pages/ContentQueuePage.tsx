@@ -66,33 +66,61 @@ const ContentQueuePage = () => {
       </div>
 
       {/* Tabs + Actions */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex gap-1 bg-secondary rounded-lg p-1">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-3">
+        <div className="flex gap-1 bg-secondary rounded-lg p-1 overflow-x-auto">
           {tabs.map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
+              className={`px-3 md:px-4 py-2 text-xs md:text-sm font-medium rounded-md transition-all duration-200 whitespace-nowrap ${
                 activeTab === tab ? "bg-card text-primary shadow-sm" : "text-muted-foreground hover:text-foreground"
               }`}
             >
               {tab}
-              <span className="ml-1.5 text-xs opacity-60">({(allPosts[tab] || []).length})</span>
+              <span className="ml-1 text-xs opacity-60">({(allPosts[tab] || []).length})</span>
             </button>
           ))}
         </div>
         <div className="flex gap-2">
-          <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium border border-border rounded-lg hover:bg-secondary hover:border-primary/20 transition-all duration-200">
-            <Filter className="w-4 h-4" /> Filter
+          <button className="flex items-center gap-2 px-3 md:px-4 py-2 text-sm font-medium border border-border rounded-lg hover:bg-secondary hover:border-primary/20 transition-all duration-200">
+            <Filter className="w-4 h-4" /> <span className="hidden sm:inline">Filter</span>
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium border border-border rounded-lg hover:bg-secondary hover:border-primary/20 transition-all duration-200">
-            <ArrowUpDown className="w-4 h-4" /> Sort by Recent
+          <button className="flex items-center gap-2 px-3 md:px-4 py-2 text-sm font-medium border border-border rounded-lg hover:bg-secondary hover:border-primary/20 transition-all duration-200">
+            <ArrowUpDown className="w-4 h-4" /> <span className="hidden sm:inline">Sort by Recent</span>
           </button>
         </div>
       </div>
 
-      {/* Table */}
-      <div className="bg-card border border-border rounded-xl overflow-hidden">
+      {/* Content - Cards on mobile, Table on desktop */}
+      {/* Mobile Cards */}
+      <div className="space-y-3 md:hidden">
+        {posts.length === 0 ? (
+          <div className="bg-card border border-border rounded-xl p-8 text-center text-muted-foreground">No posts in this category yet.</div>
+        ) : (
+          posts.map((post) => (
+            <div key={post.title} onClick={() => navigate("/article")} className="bg-card border border-border rounded-xl p-4 hover:border-primary/30 hover:shadow-md transition-all duration-200 cursor-pointer">
+              <div className="flex items-center justify-between mb-2">
+                <span className={`badge-status ${post.statusColor}`}>{post.status}</span>
+                <button className="p-1 rounded hover:bg-secondary transition-colors"><MoreVertical className="w-4 h-4 text-muted-foreground" /></button>
+              </div>
+              <p className="text-sm font-semibold text-foreground">{post.title}</p>
+              <p className="text-xs text-muted-foreground mt-0.5 mb-3">{post.subtitle}</p>
+              <div className="flex items-center justify-between">
+                <span className={`badge-status ${post.topicColor}`}>{post.topic}</span>
+                <div className="flex items-center gap-2">
+                  <div className="w-10 h-1.5 bg-secondary rounded-full overflow-hidden">
+                    <div className={`h-full rounded-full ${post.origColor}`} style={{ width: `${post.originality}%` }} />
+                  </div>
+                  <span className={`text-xs font-semibold ${post.originality >= 90 ? "text-success" : post.originality >= 75 ? "text-warning" : "text-destructive"}`}>{post.originality}%</span>
+                </div>
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+
+      {/* Desktop Table */}
+      <div className="bg-card border border-border rounded-xl overflow-hidden hidden md:block">
         <table className="w-full">
           <thead>
             <tr className="border-b border-border">

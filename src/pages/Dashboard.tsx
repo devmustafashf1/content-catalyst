@@ -38,7 +38,7 @@ const Dashboard = () => {
   return (
     <AppLayout>
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-5 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 mb-8">
         {stats.map((stat) => (
           <div key={stat.label} className="stat-card hover:shadow-md hover:border-primary/20 transition-all duration-200">
             <div className={`w-12 h-12 rounded-xl ${stat.iconBg} flex items-center justify-center shrink-0`}>
@@ -68,7 +68,7 @@ const Dashboard = () => {
           <h2 className="text-lg font-bold text-foreground">Active Agents</h2>
           <button className="text-sm font-medium text-primary hover:underline transition-colors">Manage Agents →</button>
         </div>
-        <div className="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
           {agents.map((agent) => (
             <div key={agent.name} className="bg-card border border-border rounded-xl p-4 hover:border-primary/30 hover:shadow-md transition-all duration-200 cursor-pointer group">
               <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-colors duration-200">
@@ -85,8 +85,8 @@ const Dashboard = () => {
       </div>
 
       {/* Content Pipeline + Trending */}
-      <div className="grid grid-cols-3 gap-5">
-        <div className="col-span-2 bg-card border border-border rounded-xl p-5 hover:shadow-md transition-shadow duration-300">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+        <div className="lg:col-span-2 bg-card border border-border rounded-xl p-4 md:p-5 hover:shadow-md transition-shadow duration-300">
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-2">
               <Bot className="w-5 h-5 text-primary" />
@@ -97,7 +97,7 @@ const Dashboard = () => {
               <button className="px-3 py-1.5 text-xs font-medium text-foreground bg-secondary rounded-lg hover:bg-primary/10 transition-colors">Sort</button>
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {/* Researching */}
             <div>
               <div className="flex items-center gap-2 mb-3">
