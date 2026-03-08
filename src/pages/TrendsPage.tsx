@@ -1,42 +1,72 @@
-import { Search, TrendingUp, Zap, Lightbulb, Lock, Grid3X3, Snowflake } from "lucide-react";
+import { useState } from "react";
+import { Search, TrendingUp, Zap, Lightbulb, Lock, Grid3X3, Snowflake, ExternalLink, BarChart2, Users, Clock } from "lucide-react";
 import AppLayout from "@/components/AppLayout";
 import { Button } from "@/components/ui/button";
 
 const topics = [
-  { badge: "EMERGING", badgeColor: "text-primary bg-primary/10", title: "Edge Computing AI", icon: TrendingUp, volume: "45.2K / mo", difficulty: 42, diffLabel: "Med", diffColor: "bg-warning" },
-  { badge: "VIRAL", badgeColor: "text-destructive bg-destructive/10", title: "Generative Video UI", icon: Zap, volume: "128K / mo", difficulty: 85, diffLabel: "High", diffColor: "bg-destructive" },
-  { badge: "OPPORTUNITY", badgeColor: "text-success bg-success/10", title: "Autonomous Coding Agents", icon: Lightbulb, volume: "12.5K / mo", difficulty: 18, diffLabel: "Low", diffColor: "bg-success" },
-  { badge: "NICHE", badgeColor: "text-purple-600 bg-purple-100", title: "AI Bio-Encryption", icon: Lock, volume: "3.8K / mo", difficulty: 35, diffLabel: "Med", diffColor: "bg-warning" },
-  { badge: "MAINSTREAM", badgeColor: "text-muted-foreground bg-secondary", title: "Multi-Modal LLMs", icon: Grid3X3, volume: "210K / mo", difficulty: 92, diffLabel: "High", diffColor: "bg-destructive" },
-  { badge: "FAST MOVER", badgeColor: "text-destructive bg-destructive/10", title: "AI Data Centers Cooling", icon: Snowflake, volume: "8.2K / mo", difficulty: 25, diffLabel: "Low", diffColor: "bg-success" },
+  {
+    badge: "EMERGING", badgeColor: "text-primary bg-primary/10", title: "Edge Computing AI", icon: TrendingUp,
+    volume: "45.2K / mo", difficulty: 42, diffLabel: "Med", diffColor: "bg-warning",
+    desc: "Edge AI processing is gaining traction as latency-sensitive applications demand on-device inference. Key players include NVIDIA Jetson and Intel Movidius.",
+    growth: "+34%", audience: "DevOps & ML Engineers", freshness: "2h ago",
+  },
+  {
+    badge: "VIRAL", badgeColor: "text-destructive bg-destructive/10", title: "Generative Video UI", icon: Zap,
+    volume: "128K / mo", difficulty: 85, diffLabel: "High", diffColor: "bg-destructive",
+    desc: "AI-generated video interfaces are reshaping content creation. Sora, Runway, and Pika are leading this space with text-to-video capabilities.",
+    growth: "+127%", audience: "Content Creators", freshness: "45m ago",
+  },
+  {
+    badge: "OPPORTUNITY", badgeColor: "text-success bg-success/10", title: "Autonomous Coding Agents", icon: Lightbulb,
+    volume: "12.5K / mo", difficulty: 18, diffLabel: "Low", diffColor: "bg-success",
+    desc: "Self-improving code agents are emerging as the next frontier. Low competition makes this ideal for early content movers.",
+    growth: "+89%", audience: "Software Developers", freshness: "1h ago",
+  },
+  {
+    badge: "NICHE", badgeColor: "text-purple-600 bg-purple-100", title: "AI Bio-Encryption", icon: Lock,
+    volume: "3.8K / mo", difficulty: 35, diffLabel: "Med", diffColor: "bg-warning",
+    desc: "Combining biological patterns with encryption algorithms. A highly specialized topic with dedicated readership in cybersecurity.",
+    growth: "+12%", audience: "Security Researchers", freshness: "6h ago",
+  },
+  {
+    badge: "MAINSTREAM", badgeColor: "text-muted-foreground bg-secondary", title: "Multi-Modal LLMs", icon: Grid3X3,
+    volume: "210K / mo", difficulty: 92, diffLabel: "High", diffColor: "bg-destructive",
+    desc: "GPT-5, Gemini Ultra, and Claude 4 are pushing multi-modal boundaries. Extremely competitive but massive traffic potential.",
+    growth: "+56%", audience: "Tech Enthusiasts", freshness: "30m ago",
+  },
+  {
+    badge: "FAST MOVER", badgeColor: "text-destructive bg-destructive/10", title: "AI Data Centers Cooling", icon: Snowflake,
+    volume: "8.2K / mo", difficulty: 25, diffLabel: "Low", diffColor: "bg-success",
+    desc: "Sustainable cooling solutions for AI infrastructure. Green tech angle with growing enterprise interest and low content saturation.",
+    growth: "+67%", audience: "Infrastructure Teams", freshness: "3h ago",
+  },
 ];
 
 const TrendsPage = () => {
+  const [hoveredTopic, setHoveredTopic] = useState<string | null>(null);
+
   return (
     <AppLayout>
-      {/* Header */}
       <div className="flex items-start justify-between mb-6">
         <div>
           <h1 className="text-3xl font-bold text-foreground">Discover Trends</h1>
-          <p className="text-muted-foreground mt-1">
-            Real-time market insights synthesized from Google, X, and Reddit.
-          </p>
+          <p className="text-muted-foreground mt-1">Real-time market insights synthesized from Google, X, and Reddit.</p>
         </div>
         <div className="flex gap-3">
-          <select className="h-10 px-3 text-sm border border-border rounded-lg bg-card text-foreground">
+          <select className="h-10 px-3 text-sm border border-border rounded-lg bg-card text-foreground hover:border-primary/40 transition-colors cursor-pointer">
             <option>Region: Global</option>
           </select>
-          <select className="h-10 px-3 text-sm border border-border rounded-lg bg-card text-foreground">
+          <select className="h-10 px-3 text-sm border border-border rounded-lg bg-card text-foreground hover:border-primary/40 transition-colors cursor-pointer">
             <option>Category: Tech</option>
           </select>
-          <select className="h-10 px-3 text-sm border border-border rounded-lg bg-card text-foreground">
+          <select className="h-10 px-3 text-sm border border-border rounded-lg bg-card text-foreground hover:border-primary/40 transition-colors cursor-pointer">
             <option>Last 24h</option>
           </select>
         </div>
       </div>
 
       {/* Topic Health Index */}
-      <div className="bg-card border border-border rounded-xl p-5 mb-8">
+      <div className="bg-card border border-border rounded-xl p-5 mb-8 hover:shadow-md transition-shadow duration-300">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <div className="w-6 h-6 rounded bg-primary/10 flex items-center justify-center">
@@ -48,25 +78,27 @@ const TrendsPage = () => {
         </div>
         <div className="flex items-center gap-3">
           <div className="flex-1 h-3 bg-secondary rounded-full overflow-hidden">
-            <div className="h-full rounded-full bg-gradient-to-r from-primary to-primary/60" style={{ width: "88%" }} />
+            <div className="h-full rounded-full bg-gradient-to-r from-primary to-primary/60 transition-all duration-1000" style={{ width: "88%" }} />
           </div>
           <span className="text-lg font-bold text-foreground">88%</span>
         </div>
-        <p className="text-sm text-muted-foreground mt-2">
-          Market interest is rising significantly in the AI Infrastructure sector. Competitive intensity is currently moderate.
-        </p>
+        <p className="text-sm text-muted-foreground mt-2">Market interest is rising significantly in the AI Infrastructure sector. Competitive intensity is currently moderate.</p>
       </div>
 
-      {/* Suggested Topics */}
       <h2 className="text-xl font-bold text-foreground mb-4">Suggested Topics</h2>
       <div className="grid grid-cols-3 gap-5">
         {topics.map((topic) => (
-          <div key={topic.title} className="bg-card border border-border rounded-xl p-5 flex flex-col">
+          <div
+            key={topic.title}
+            className="bg-card border border-border rounded-xl p-5 flex flex-col relative group hover:border-primary/30 hover:shadow-lg transition-all duration-300 cursor-pointer"
+            onMouseEnter={() => setHoveredTopic(topic.title)}
+            onMouseLeave={() => setHoveredTopic(null)}
+          >
             <div className="flex items-center justify-between mb-3">
               <span className={`badge-status ${topic.badgeColor} font-semibold`}>{topic.badge}</span>
-              <topic.icon className="w-5 h-5 text-muted-foreground" />
+              <topic.icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-200" />
             </div>
-            <h3 className="text-lg font-bold text-foreground mb-4">{topic.title}</h3>
+            <h3 className="text-lg font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-200">{topic.title}</h3>
             <div className="space-y-2 flex-1">
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Keyword Volume</span>
@@ -82,7 +114,41 @@ const TrendsPage = () => {
                 </div>
               </div>
             </div>
-            <Button className="w-full mt-4 gap-2">
+
+            {/* Hover Detail Overlay */}
+            <div className={`absolute inset-0 bg-card border border-primary/30 rounded-xl p-5 flex flex-col shadow-xl z-10 transition-all duration-300 ${
+              hoveredTopic === topic.title ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"
+            }`}>
+              <div className="flex items-center justify-between mb-2">
+                <span className={`badge-status ${topic.badgeColor} font-semibold`}>{topic.badge}</span>
+                <span className="text-xs text-muted-foreground flex items-center gap-1">
+                  <Clock className="w-3 h-3" /> {topic.freshness}
+                </span>
+              </div>
+              <h3 className="text-lg font-bold text-primary mb-2">{topic.title}</h3>
+              <p className="text-xs text-muted-foreground leading-relaxed mb-3 flex-1">{topic.desc}</p>
+              <div className="grid grid-cols-3 gap-2 mb-3">
+                <div className="text-center p-2 bg-secondary/50 rounded-lg">
+                  <BarChart2 className="w-3.5 h-3.5 mx-auto text-success mb-1" />
+                  <p className="text-xs font-bold text-success">{topic.growth}</p>
+                  <p className="text-[10px] text-muted-foreground">Growth</p>
+                </div>
+                <div className="text-center p-2 bg-secondary/50 rounded-lg">
+                  <Users className="w-3.5 h-3.5 mx-auto text-primary mb-1" />
+                  <p className="text-[10px] font-semibold text-foreground">{topic.audience}</p>
+                </div>
+                <div className="text-center p-2 bg-secondary/50 rounded-lg">
+                  <ExternalLink className="w-3.5 h-3.5 mx-auto text-warning mb-1" />
+                  <p className="text-xs font-bold text-foreground">{topic.volume}</p>
+                  <p className="text-[10px] text-muted-foreground">Volume</p>
+                </div>
+              </div>
+              <Button className="w-full gap-2" size="sm">
+                <Search className="w-4 h-4" /> Start Research
+              </Button>
+            </div>
+
+            <Button className="w-full mt-4 gap-2 group-hover:shadow-sm transition-shadow">
               <Search className="w-4 h-4" />
               Start Research
             </Button>

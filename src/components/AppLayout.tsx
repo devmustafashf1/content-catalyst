@@ -12,7 +12,9 @@ const AppLayout = ({ children }: AppLayoutProps) => {
       <AppSidebar />
       <div className="ml-60">
         <TopBar />
-        <main className="p-6">{children}</main>
+        <main className="p-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
+          {children}
+        </main>
       </div>
     </div>
   );

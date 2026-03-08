@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
 import authHeroBg from "@/assets/auth-hero-bg.jpg";
 
 const GoogleIcon = () => (
@@ -19,17 +20,19 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    login();
     navigate("/");
   };
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen animate-in fade-in duration-500">
       {/* Left Side: Form */}
       <div className="flex-1 flex flex-col justify-center items-center px-6 py-12 lg:px-24 bg-card">
-        <div className="w-full max-w-sm space-y-8">
+        <div className="w-full max-w-sm space-y-8 animate-in slide-in-from-left-4 duration-500">
           {/* Logo */}
           <div className="flex flex-col items-center lg:items-start">
             <div className="flex items-center gap-2 mb-6">
@@ -38,23 +41,27 @@ const LoginPage = () => {
               </div>
               <span className="text-xl font-bold text-foreground tracking-tight">AI Content Pro</span>
             </div>
-            <h1 className="text-3xl font-black text-foreground leading-tight tracking-tight">
+            <h1 className="text-3xl font-black text-foreground leading-tight tracking-tight transition-all duration-300">
               {isSignUp ? "Create account" : "Welcome back"}
             </h1>
             <p className="mt-2 text-muted-foreground">
-              {isSignUp
-                ? "Start your AI content journey today."
-                : "Please enter your details to sign in."}
+              {isSignUp ? "Start your AI content journey today." : "Please enter your details to sign in."}
             </p>
           </div>
 
           {/* Social Buttons */}
           <div className="space-y-3">
-            <button className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-border rounded-lg bg-card hover:bg-secondary transition-colors font-semibold text-foreground">
+            <button
+              onClick={() => { login(); navigate("/"); }}
+              className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-border rounded-lg bg-card hover:bg-secondary hover:border-primary/30 hover:shadow-sm transition-all duration-200 font-semibold text-foreground"
+            >
               <GoogleIcon />
               Continue with Google
             </button>
-            <button className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-primary/20 rounded-lg bg-primary/5 hover:bg-primary/10 transition-colors font-semibold text-primary">
+            <button
+              onClick={() => { login(); navigate("/"); }}
+              className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-primary/20 rounded-lg bg-primary/5 hover:bg-primary/10 hover:shadow-sm transition-all duration-200 font-semibold text-primary"
+            >
               <Sparkles className="w-5 h-5" />
               Sign in with Magic Link
             </button>
@@ -73,14 +80,14 @@ const LoginPage = () => {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-5">
             {isSignUp && (
-              <div>
+              <div className="animate-in slide-in-from-top-2 duration-300">
                 <label className="block text-sm font-medium text-foreground mb-1.5">Full name</label>
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="John Doe"
-                  className="block w-full rounded-lg border border-border bg-card text-foreground focus:border-primary focus:ring-1 focus:ring-ring py-3 px-4 placeholder:text-muted-foreground text-sm"
+                  className="block w-full rounded-lg border border-border bg-card text-foreground focus:border-primary focus:ring-1 focus:ring-ring py-3 px-4 placeholder:text-muted-foreground text-sm transition-shadow duration-200 hover:shadow-sm"
                 />
               </div>
             )}
@@ -91,14 +98,14 @@ const LoginPage = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="name@company.com"
-                className="block w-full rounded-lg border border-border bg-card text-foreground focus:border-primary focus:ring-1 focus:ring-ring py-3 px-4 placeholder:text-muted-foreground text-sm"
+                className="block w-full rounded-lg border border-border bg-card text-foreground focus:border-primary focus:ring-1 focus:ring-ring py-3 px-4 placeholder:text-muted-foreground text-sm transition-shadow duration-200 hover:shadow-sm"
               />
             </div>
             <div>
               <div className="flex items-center justify-between mb-1.5">
                 <label className="block text-sm font-medium text-foreground">Password</label>
                 {!isSignUp && (
-                  <button type="button" className="text-sm font-semibold text-primary hover:opacity-80">
+                  <button type="button" className="text-sm font-semibold text-primary hover:opacity-80 transition-opacity">
                     Forgot password?
                   </button>
                 )}
@@ -108,20 +115,17 @@ const LoginPage = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="block w-full rounded-lg border border-border bg-card text-foreground focus:border-primary focus:ring-1 focus:ring-ring py-3 px-4 placeholder:text-muted-foreground text-sm"
+                className="block w-full rounded-lg border border-border bg-card text-foreground focus:border-primary focus:ring-1 focus:ring-ring py-3 px-4 placeholder:text-muted-foreground text-sm transition-shadow duration-200 hover:shadow-sm"
               />
             </div>
-            <Button type="submit" className="w-full py-3 text-sm font-bold">
+            <Button type="submit" className="w-full py-3 text-sm font-bold hover:shadow-md transition-all duration-200">
               {isSignUp ? "Create Account" : "Sign in to Dashboard"}
             </Button>
           </form>
 
           <p className="text-center text-sm text-muted-foreground">
             {isSignUp ? "Already have an account? " : "Don't have an account? "}
-            <button
-              onClick={() => setIsSignUp(!isSignUp)}
-              className="font-semibold text-primary hover:opacity-80"
-            >
+            <button onClick={() => setIsSignUp(!isSignUp)} className="font-semibold text-primary hover:opacity-80 transition-opacity">
               {isSignUp ? "Sign in" : "Create an account"}
             </button>
           </p>
@@ -130,14 +134,11 @@ const LoginPage = () => {
 
       {/* Right Side: Hero */}
       <div className="hidden lg:flex flex-1 relative overflow-hidden" style={{ backgroundColor: "hsl(var(--auth-dark))" }}>
-        {/* Background */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-transparent mix-blend-multiply z-10" />
           <img src={authHeroBg} alt="" className="w-full h-full object-cover opacity-60" />
         </div>
-
-        {/* Content */}
-        <div className="relative z-20 flex flex-col justify-end p-16 max-w-2xl" style={{ color: "hsl(var(--auth-hero-text))" }}>
+        <div className="relative z-20 flex flex-col justify-end p-16 max-w-2xl animate-in slide-in-from-right-4 duration-700" style={{ color: "hsl(var(--auth-hero-text))" }}>
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-sm font-medium">
               <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse" />
@@ -166,9 +167,7 @@ const LoginPage = () => {
             </div>
           </div>
         </div>
-
-        {/* Floating UI Mockup */}
-        <div className="absolute top-20 right-20 z-20 hidden xl:block w-72 h-48 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl">
+        <div className="absolute top-20 right-20 z-20 hidden xl:block w-72 h-48 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl animate-in fade-in slide-in-from-top-4 duration-1000">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
               <Sparkles className="w-4 h-4 text-primary" />
