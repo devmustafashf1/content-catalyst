@@ -102,8 +102,8 @@ const IntegrationsPage = () => {
                     </div>
                   </div>
                   {api.connected ? (
-                    <div className="flex items-center gap-3">
-                      <input type="password" value="sk-xxxxxxxxxxxxxxxx" readOnly className="h-9 px-3 text-sm border border-border rounded-lg bg-background w-56" />
+                    <div className="flex items-center gap-2 mt-2 sm:mt-0">
+                      <input type="password" value="sk-xxxxxxxxxxxxxxxx" readOnly className="h-9 px-3 text-sm border border-border rounded-lg bg-background w-full sm:w-56" />
                       <Button variant="default" size="sm">Edit</Button>
                     </div>
                   ) : (
