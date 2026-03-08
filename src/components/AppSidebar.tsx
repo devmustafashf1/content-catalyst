@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
   TrendingUp,
@@ -8,7 +8,9 @@ import {
   Puzzle,
   Settings,
   Sparkles,
+  LogOut,
 } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const navItems = [
   { to: "/", icon: LayoutDashboard, label: "Dashboard" },
@@ -22,6 +24,13 @@ const navItems = [
 
 const AppSidebar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
 
   return (
     <aside className="fixed left-0 top-0 bottom-0 w-60 bg-card border-r border-border flex flex-col z-30">
@@ -53,14 +62,23 @@ const AppSidebar = () => {
         })}
       </nav>
 
-      {/* Credits */}
+      {/* Logout + Credits */}
+      <div className="px-3 pb-2">
+        <button
+          onClick={handleLogout}
+          className="sidebar-link w-full text-destructive hover:bg-destructive/5"
+        >
+          <LogOut className="w-5 h-5 shrink-0" />
+          <span>Logout</span>
+        </button>
+      </div>
       <div className="px-4 py-4 border-t border-border">
         <div className="flex items-center justify-between text-xs mb-1.5">
           <span className="text-muted-foreground">Credits</span>
           <span className="font-semibold text-primary">84%</span>
         </div>
         <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
-          <div className="h-full bg-primary rounded-full" style={{ width: "84%" }} />
+          <div className="h-full bg-primary rounded-full transition-all duration-500" style={{ width: "84%" }} />
         </div>
       </div>
     </aside>
