@@ -68,7 +68,7 @@ const Dashboard = () => {
           <h2 className="text-lg font-bold text-foreground">Active Agents</h2>
           <button className="text-sm font-medium text-primary hover:underline transition-colors">Manage Agents →</button>
         </div>
-        <div className="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
           {agents.map((agent) => (
             <div key={agent.name} className="bg-card border border-border rounded-xl p-4 hover:border-primary/30 hover:shadow-md transition-all duration-200 cursor-pointer group">
               <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-colors duration-200">
