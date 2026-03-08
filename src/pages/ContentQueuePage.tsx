@@ -66,27 +66,27 @@ const ContentQueuePage = () => {
       </div>
 
       {/* Tabs + Actions */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex gap-1 bg-secondary rounded-lg p-1">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-3">
+        <div className="flex gap-1 bg-secondary rounded-lg p-1 overflow-x-auto">
           {tabs.map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
+              className={`px-3 md:px-4 py-2 text-xs md:text-sm font-medium rounded-md transition-all duration-200 whitespace-nowrap ${
                 activeTab === tab ? "bg-card text-primary shadow-sm" : "text-muted-foreground hover:text-foreground"
               }`}
             >
               {tab}
-              <span className="ml-1.5 text-xs opacity-60">({(allPosts[tab] || []).length})</span>
+              <span className="ml-1 text-xs opacity-60">({(allPosts[tab] || []).length})</span>
             </button>
           ))}
         </div>
         <div className="flex gap-2">
-          <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium border border-border rounded-lg hover:bg-secondary hover:border-primary/20 transition-all duration-200">
-            <Filter className="w-4 h-4" /> Filter
+          <button className="flex items-center gap-2 px-3 md:px-4 py-2 text-sm font-medium border border-border rounded-lg hover:bg-secondary hover:border-primary/20 transition-all duration-200">
+            <Filter className="w-4 h-4" /> <span className="hidden sm:inline">Filter</span>
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium border border-border rounded-lg hover:bg-secondary hover:border-primary/20 transition-all duration-200">
-            <ArrowUpDown className="w-4 h-4" /> Sort by Recent
+          <button className="flex items-center gap-2 px-3 md:px-4 py-2 text-sm font-medium border border-border rounded-lg hover:bg-secondary hover:border-primary/20 transition-all duration-200">
+            <ArrowUpDown className="w-4 h-4" /> <span className="hidden sm:inline">Sort by Recent</span>
           </button>
         </div>
       </div>
