@@ -85,8 +85,8 @@ const Dashboard = () => {
       </div>
 
       {/* Content Pipeline + Trending */}
-      <div className="grid grid-cols-3 gap-5">
-        <div className="col-span-2 bg-card border border-border rounded-xl p-5 hover:shadow-md transition-shadow duration-300">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+        <div className="lg:col-span-2 bg-card border border-border rounded-xl p-4 md:p-5 hover:shadow-md transition-shadow duration-300">
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-2">
               <Bot className="w-5 h-5 text-primary" />
