@@ -40,6 +40,7 @@ const allPosts: Record<string, Post[]> = {
 };
 
 const ContentQueuePage = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("Drafts");
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [newTitle, setNewTitle] = useState("");
